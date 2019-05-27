@@ -10,10 +10,10 @@ import UIKit
 
 class HomeView: UICollectionViewCell {
     static let reUseIdentifier: String = "HomeViewIdentifier"
-    let alphas: [CGFloat] = [0.5, 0.25, 0, 0.25, 0.5, 0.5]
+    let alphas: [CGFloat] = [0.7, 0.25, 0, 0.3, 0.6, 0.7]
     
-    var getDealButton: Button?
-    var findOtherButton: Button?
+    var getDealButton: CustomButton?
+    var findOtherButton: CustomButton?
     var dealClassifier: UILabel?
     var dealDescription: UILabel?
     var backgroundImage: UIImageView?
@@ -40,6 +40,12 @@ class HomeView: UICollectionViewCell {
         let labelHeight: CGFloat = 53
         let frame: CGRect = CGRect(x: 0, y: 0, width: labelWidth, height: labelHeight)
         
+        let innerStack = UIStackView()
+        innerStack.spacing = 0
+        innerStack.axis = .vertical
+        innerStack.alignment = .fill
+        innerStack.distribution = .fill
+        
         self.dealClassifier = UILabel(frame: frame)
         self.dealClassifier?.text = "KOREAN"
         self.dealClassifier?.numberOfLines = 0
@@ -54,8 +60,9 @@ class HomeView: UICollectionViewCell {
         self.dealDescription?.textColor = .white
         self.dealDescription?.font = headerThreeFont
         
-        stack.addArrangedSubview(self.dealClassifier!)
-        stack.addArrangedSubview(self.dealDescription!)
+        innerStack.addArrangedSubview(self.dealClassifier!)
+        innerStack.addArrangedSubview(self.dealDescription!)
+        stack.addArrangedSubview(innerStack)
     }
     
     func initializeButtons(frame: CGRect) {
@@ -64,6 +71,7 @@ class HomeView: UICollectionViewCell {
         let contentWidth:CGFloat = frame.width - (2 * space)
         let contentHeight: CGFloat = frame.height * 6/10
         let buttonHeight: CGFloat = 53
+        let buttonframe: CGRect = CGRect(x: 0, y: 0, width: frame.width, height: buttonHeight)
         
         let stack = UIStackView()
         stack.spacing = 16
@@ -83,33 +91,34 @@ class HomeView: UICollectionViewCell {
         let upperPlaceHolderView = UIView()
         stack.addArrangedSubview(upperPlaceHolderView)
         
-        getDealButton = Button(
-            frame: CGRect(x: 0, y: 0, width: frame.width, height: buttonHeight),
+        getDealButton = CustomButton(
+            frame: buttonframe,
             type: .Dark,
             font: headerTwoFont
         )
-        findOtherButton = Button(
-            frame: CGRect(x: 0, y: 0, width: frame.width, height: buttonHeight),
+        findOtherButton = CustomButton(
+            frame: buttonframe,
             type: .Light,
             font: headerTwoFont
         )
         
-        getDealButton?.text = "Grab deal"
+        getDealButton?.customtext = "Grab deal"
         getDealButton?.translatesAutoresizingMaskIntoConstraints = false
         getDealButton?.heightAnchor.constraint(equalToConstant: buttonHeight).isActive = true
-        findOtherButton?.text = "Find other restaurants"
+        findOtherButton?.customtext = "Find other restaurants"
         findOtherButton?.translatesAutoresizingMaskIntoConstraints = false
         findOtherButton?.heightAnchor.constraint(equalToConstant: buttonHeight).isActive = true
         
         initializeLabels(stack: stack, frame: frame)
-        stack.addArrangedSubview(findOtherButton!)
         stack.addArrangedSubview(getDealButton!)
+        stack.addArrangedSubview(findOtherButton!)
     }
     
     func initialize(frame: CGRect) {
         self.backgroundImage = UIImageView(frame: frame)
         self.backgroundImage!.contentMode = .scaleAspectFill
-        self.backgroundImage!.backgroundColor = .red
+        self.backgroundImage!.backgroundColor = mainBackground
+        self.backgroundImage!.image = UIImage(named: "defaultBackground")
         self.backgroundImage!.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(self.backgroundImage!)
         

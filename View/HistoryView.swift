@@ -21,7 +21,7 @@ class HistoryView: UICollectionViewCell {
     }
     
     func setupBackground() {
-        self.backgroundColor = .green
+        self.backgroundColor = mainBackground
     }
 
 }

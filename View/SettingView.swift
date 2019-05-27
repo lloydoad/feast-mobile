@@ -21,6 +21,6 @@ class SettingView: UICollectionViewCell {
     }
     
     func setupBackground() {
-        self.backgroundColor = .blue
+        self.backgroundColor = mainBackground
     }
 }

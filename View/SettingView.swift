@@ -8,11 +8,12 @@
 
 import UIKit
 
-class SettingView: UICollectionViewCell {
+class SettingView: UICollectionViewCell, UIPickerViewDelegate, UIPickerViewDataSource {
     static let identifier: String = "SettingViewCellIdentifier"
     
-    var questionCount: Int = 3
+    var questionCount: Int = 4
     var isShowingQuestionCountStack: Bool = false
+    var questionCountOptions: [Int] = [3,4,5]
     var mainStack: UIStackView!
     var notificationsSwitch: UISwitch!
     var questionCountButton: CustomButton!
@@ -68,7 +69,7 @@ class SettingView: UICollectionViewCell {
         notificationsButton.setTitleColor(.white, for: .highlighted)
         self.notificationsSwitch = UISwitch()
         self.notificationsSwitch.onTintColor = paleOrange
-        self.notificationsSwitch.tintColor = mainBackground
+        self.notificationsSwitch.tintColor = .white
         self.notificationsSwitch.thumbTintColor = .white
         self.notificationsSwitch.isOn = true
         self.notificationsSwitch.translatesAutoresizingMaskIntoConstraints = false
@@ -100,7 +101,7 @@ class SettingView: UICollectionViewCell {
     
     @objc func respondToQuestionCountButton() {
         guard !self.isShowingQuestionCountStack else {
-            UIView.animate(withDuration: 0.12, animations: {
+            UIView.animate(withDuration: 0.15, animations: {
                 self.questionCountStack.alpha = 0
             }) { (_) in
                 self.mainStack.removeArrangedSubview(self.questionCountStack)
@@ -119,12 +120,61 @@ class SettingView: UICollectionViewCell {
         self.questionCountStack.translatesAutoresizingMaskIntoConstraints = false
         self.questionCountStack.heightAnchor.constraint(equalToConstant: 53 + 16 + 82).isActive = true
         
-        let view = UIView()
-        view.backgroundColor = .red
-        self.questionCountStack.addArrangedSubview(view)
+        let infoView = UIView()
+        let infoTextLabel = UILabel()
+        infoTextLabel.text = "The higher the number of questions, the more accurate, our suggestions can be."
+        infoTextLabel.backgroundColor = mainBackground
+        infoTextLabel.textAlignment = .left
+        infoTextLabel.numberOfLines = 0
+        infoTextLabel.textColor = .white
+        infoTextLabel.font = infoFont
+        infoTextLabel.sizeToFit()
+        
+        infoTextLabel.translatesAutoresizingMaskIntoConstraints = false
+        infoView.addSubview(infoTextLabel)
+        NSLayoutConstraint.activate([
+            infoTextLabel.topAnchor.constraint(equalTo: infoView.topAnchor),
+            infoTextLabel.leadingAnchor.constraint(equalTo: infoView.leadingAnchor, constant: 14),
+            infoTextLabel.trailingAnchor.constraint(equalTo: infoView.trailingAnchor, constant: -14),
+            infoTextLabel.bottomAnchor.constraint(equalTo: infoView.bottomAnchor, constant: -14)
+        ])
+        
+        infoView.translatesAutoresizingMaskIntoConstraints = false
+        infoView.heightAnchor.constraint(greaterThanOrEqualToConstant: 53).isActive = true
+        self.questionCountStack.addArrangedSubview(infoView)
+        
+        let countPicker = UIPickerView()
+        countPicker.dataSource = self
+        countPicker.delegate = self
+        countPicker.backgroundColor = .clear
+        countPicker.showsSelectionIndicator = true
+        self.questionCountStack.addArrangedSubview(countPicker)
+        countPicker.selectRow(self.questionCount - 3, inComponent: 0, animated: false)
+        
         self.mainStack.insertArrangedSubview(self.questionCountStack, at: 1)
-        UIView.animate(withDuration: 0.13) {
+        UIView.animate(withDuration: 0.14) {
             self.questionCountStack.alpha = 1
         }
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.questionCountOptions.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let label = UILabel()
+        label.text = "\(self.questionCountOptions[row])"
+        label.textColor = .white
+        label.textAlignment = .center
+        return label
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.questionCount = row + 3
+        self.questionCountButton.customtext = "Number of Questions: \(self.questionCount)"
     }
 }

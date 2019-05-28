@@ -19,7 +19,7 @@ class HomeView: UICollectionViewCell {
     var backgroundImage: UIImageView?
     var constraintFrame: CGRect? {
         didSet {
-            initialize(frame: constraintFrame!)
+            initializeFrame(frame: constraintFrame!)
             initializeButtons(frame: constraintFrame!)
         }
     }
@@ -27,8 +27,8 @@ class HomeView: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = mainBackground
-        self.constraintFrame = frame
-        self.initialize(frame: self.constraintFrame ?? frame)
+        self.constraintFrame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
+        self.initializeFrame(frame: self.constraintFrame ?? frame)
         self.initializeButtons(frame: self.constraintFrame ?? frame)
     }
     
@@ -116,8 +116,9 @@ class HomeView: UICollectionViewCell {
         stack.addArrangedSubview(findOtherButton!)
     }
     
-    func initialize(frame: CGRect) {
+    func initializeFrame(frame: CGRect) {
         self.backgroundImage = UIImageView(frame: frame)
+        self.backgroundImage!.clipsToBounds = true
         self.backgroundImage!.contentMode = .scaleAspectFill
         self.backgroundImage!.backgroundColor = mainBackground
         self.backgroundImage!.image = UIImage(named: "defaultBackground")
@@ -133,8 +134,8 @@ class HomeView: UICollectionViewCell {
         
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
-        gradientLayer.colors = []
         self.backgroundImage!.layer.addSublayer(gradientLayer)
+        gradientLayer.colors = []
         for alpha in alphas {
             let alphaColor = getColor(red: 6, green: 6, blue: 5, alpha: alpha)
             gradientLayer.colors?.append(alphaColor.cgColor)

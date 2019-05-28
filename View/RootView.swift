@@ -14,9 +14,13 @@ class RootView: UIViewController, UICollectionViewDelegate, UICollectionViewData
     var settingButton: UIButton!
     var homeButton: UIButton!
     var locationBarOffset: NSLayoutConstraint!
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         collectionView.scrollToItem(at: IndexPath(row: 1, section: 0), at: .centeredHorizontally, animated: false)
+        self.setNeedsStatusBarAppearanceUpdate()
     }
     
     override func viewDidLoad() {
@@ -108,6 +112,7 @@ class RootView: UIViewController, UICollectionViewDelegate, UICollectionViewData
         self.collectionView.delegate = self
         self.collectionView.isPagingEnabled = true
         self.collectionView.alwaysBounceHorizontal = false
+        self.collectionView.backgroundColor = mainBackground
         self.view.addSubview(self.collectionView)
         
         NSLayoutConstraint.activate([
@@ -123,21 +128,12 @@ class RootView: UIViewController, UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let width = self.view.frame.width
-        let height = self.view.frame.height
-        let frame = CGRect(x: 0, y: 0, width: width, height: height)
-        
-        switch indexPath.row {
-        case 0:
+        if indexPath.row == 0 {
             return self.collectionView.dequeueReusableCell(withReuseIdentifier: HistoryView.identifier, for: indexPath) as! HistoryView
-        case 1:
-            let homeview = self.collectionView.dequeueReusableCell(withReuseIdentifier: HomeView.reUseIdentifier, for: indexPath) as! HomeView
-//            homeview.constraintFrame = frame
-            return homeview
-        case 2:
+        } else if indexPath.row == 1 {
+            return self.collectionView.dequeueReusableCell(withReuseIdentifier: HomeView.reUseIdentifier, for: indexPath) as! HomeView
+        } else {
             return self.collectionView.dequeueReusableCell(withReuseIdentifier: SettingView.identifier, for: indexPath) as! SettingView
-        default:
-            return UICollectionViewCell(frame: self.view.frame)
         }
     }
     

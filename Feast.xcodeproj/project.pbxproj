@@ -11,7 +11,7 @@
 		4C81AE8C2299F9F400F0DA6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C81AE8B2299F9F400F0DA6C /* Assets.xcassets */; };
 		4C81AE8F2299F9F400F0DA6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C81AE8D2299F9F400F0DA6C /* LaunchScreen.storyboard */; };
 		4C81AE972299FCF300F0DA6C /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C81AE962299FCF300F0DA6C /* RootView.swift */; };
-		4C81AE9A2299FDDB00F0DA6C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C81AE992299FDDB00F0DA6C /* Colors.swift */; };
+		4C81AE9A2299FDDB00F0DA6C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C81AE992299FDDB00F0DA6C /* Constants.swift */; };
 		4C81AE9F229A18FC00F0DA6C /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C81AE9E229A18FC00F0DA6C /* Helpers.swift */; };
 		4C81AEA1229A242200F0DA6C /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C81AEA0229A242200F0DA6C /* SettingView.swift */; };
 		4C81AEA3229A243700F0DA6C /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C81AEA2229A243700F0DA6C /* HistoryView.swift */; };
@@ -27,7 +27,7 @@
 		4C81AE8E2299F9F400F0DA6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C81AE902299F9F400F0DA6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C81AE962299FCF300F0DA6C /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
-		4C81AE992299FDDB00F0DA6C /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		4C81AE992299FDDB00F0DA6C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4C81AE9E229A18FC00F0DA6C /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		4C81AEA0229A242200F0DA6C /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		4C81AEA2229A243700F0DA6C /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 		4C81AE982299FDC800F0DA6C /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				4C81AE992299FDDB00F0DA6C /* Colors.swift */,
+				4C81AE992299FDDB00F0DA6C /* Constants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -171,7 +171,7 @@
 				4C81AEA3229A243700F0DA6C /* HistoryView.swift in Sources */,
 				4C81AE972299FCF300F0DA6C /* RootView.swift in Sources */,
 				4C81AEA9229B2B1D00F0DA6C /* HomeView.swift in Sources */,
-				4C81AE9A2299FDDB00F0DA6C /* Colors.swift in Sources */,
+				4C81AE9A2299FDDB00F0DA6C /* Constants.swift in Sources */,
 				4C81AEAB229BA8A900F0DA6C /* CustomButton.swift in Sources */,
 				4C81AEA1229A242200F0DA6C /* SettingView.swift in Sources */,
 				4C81AE9F229A18FC00F0DA6C /* Helpers.swift in Sources */,

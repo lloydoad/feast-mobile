@@ -9,26 +9,23 @@
 import UIKit
 
 class RootView: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-    
     var collectionView: UICollectionView!
-    
     var historyButton: UIButton!
     var settingButton: UIButton!
     var homeButton: UIButton!
     var locationBarOffset: NSLayoutConstraint!
     
+    override func viewWillAppear(_ animated: Bool) {
+        collectionView.scrollToItem(at: IndexPath(row: 1, section: 0), at: .centeredHorizontally, animated: false)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupCollectionView()
-        
         self.collectionView.register(HomeView.self, forCellWithReuseIdentifier: HomeView.reUseIdentifier)
         self.collectionView.register(SettingView.self, forCellWithReuseIdentifier: SettingView.identifier)
         self.collectionView.register(HistoryView.self, forCellWithReuseIdentifier: HistoryView.identifier)
         self.initializeButtons()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        collectionView.scrollToItem(at: IndexPath(row: 1, section: 0), at: .centeredHorizontally, animated: false)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -51,24 +48,7 @@ class RootView: UIViewController, UICollectionViewDelegate, UICollectionViewData
         menu.alignment = .center
         menu.distribution = .fillEqually
         menu.translatesAutoresizingMaskIntoConstraints = false
-        
         self.view.addSubview(menu)
-        NSLayoutConstraint.activate([
-            menu.widthAnchor.constraint(equalToConstant: width),
-            menu.heightAnchor.constraint(equalToConstant: height),
-            menu.topAnchor.constraint(equalTo: self.view.topAnchor, constant: height + 5),
-            menu.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
-        ])
-        
-        self.historyButton = createMenuButton(title: "History", tag: 0)
-        self.homeButton = createMenuButton(title: "Home", tag: 1)
-        self.settingButton = createMenuButton(title: "Settings", tag: 2)
-        self.historyButton.tag = 0
-        self.homeButton.tag = 1
-        self.settingButton.tag = 2
-        menu.addArrangedSubview(self.historyButton)
-        menu.addArrangedSubview(self.homeButton)
-        menu.addArrangedSubview(self.settingButton)
         
         let locationBar = UIView()
         locationBar.layer.borderWidth = 0
@@ -77,15 +57,27 @@ class RootView: UIViewController, UICollectionViewDelegate, UICollectionViewData
         locationBar.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(locationBar)
         
-        locationBar.topAnchor.constraint(equalTo: menu.bottomAnchor).isActive = true
-        locationBar.widthAnchor.constraint(equalToConstant: locationBarWidth).isActive = true
-        locationBar.heightAnchor.constraint(equalToConstant: locationBarHeight).isActive = true
+        NSLayoutConstraint.activate([
+            menu.widthAnchor.constraint(equalToConstant: width),
+            menu.heightAnchor.constraint(equalToConstant: height),
+            menu.topAnchor.constraint(equalTo: self.view.topAnchor, constant: height + 5),
+            menu.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
+        ])
         
+        self.historyButton = createMenuButton(menu: menu, title: "History", tag: 0)
+        self.homeButton = createMenuButton(menu: menu, title: "Home", tag: 1)
+        self.settingButton = createMenuButton(menu: menu, title: "Settings", tag: 2)
+        
+        NSLayoutConstraint.activate([
+            locationBar.topAnchor.constraint(equalTo: menu.bottomAnchor),
+            locationBar.widthAnchor.constraint(equalToConstant: locationBarWidth),
+            locationBar.heightAnchor.constraint(equalToConstant: locationBarHeight)
+        ])
         self.locationBarOffset = locationBar.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0)
         self.locationBarOffset.isActive = true
     }
     
-    func createMenuButton(title: String, tag: Int) -> UIButton {
+    func createMenuButton(menu: UIStackView, title: String, tag: Int) -> UIButton {
         let button = UIButton(type: .system)
         button.setAttributedTitle(
             NSAttributedString(
@@ -98,15 +90,8 @@ class RootView: UIViewController, UICollectionViewDelegate, UICollectionViewData
         )
         button.tag = tag
         button.addTarget(self, action: #selector(respondToMenu(sender:)), for: .touchUpInside)
+        menu.addArrangedSubview(button)
         return button
-    }
-    
-    @objc func respondToMenu(sender: UIButton) {
-        self.collectionView.scrollToItem(
-            at: IndexPath(row: sender.tag, section: 0),
-            at: .centeredHorizontally,
-            animated:true
-        )
     }
     
     func setupCollectionView() {
@@ -122,6 +107,7 @@ class RootView: UIViewController, UICollectionViewDelegate, UICollectionViewData
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         self.collectionView.isPagingEnabled = true
+        self.collectionView.alwaysBounceHorizontal = false
         self.view.addSubview(self.collectionView)
         
         NSLayoutConstraint.activate([
@@ -146,12 +132,20 @@ class RootView: UIViewController, UICollectionViewDelegate, UICollectionViewData
             return self.collectionView.dequeueReusableCell(withReuseIdentifier: HistoryView.identifier, for: indexPath) as! HistoryView
         case 1:
             let homeview = self.collectionView.dequeueReusableCell(withReuseIdentifier: HomeView.reUseIdentifier, for: indexPath) as! HomeView
-            homeview.constraintFrame = frame
+//            homeview.constraintFrame = frame
             return homeview
         case 2:
             return self.collectionView.dequeueReusableCell(withReuseIdentifier: SettingView.identifier, for: indexPath) as! SettingView
         default:
             return UICollectionViewCell(frame: self.view.frame)
         }
+    }
+    
+    @objc func respondToMenu(sender: UIButton) {
+        self.collectionView.scrollToItem(
+            at: IndexPath(row: sender.tag, section: 0),
+            at: .centeredHorizontally,
+            animated:true
+        )
     }
 }

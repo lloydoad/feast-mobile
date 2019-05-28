@@ -14,26 +14,17 @@ enum CustomButtonType {
 }
 
 class CustomButton: UIButton {
-    
-    var customType: CustomButtonType!
-    var customFont: UIFont = headerTwoFont
-    var customTextColor: UIColor = .white
-    
     override var buttonType: UIButton.ButtonType {
         return .system
     }
+    
+    var customType: CustomButtonType = .Dark
+    var customFont: UIFont = headerTwoFont
+    var mainColor: UIColor = .white
+    var secondaryColor: UIColor = paleOrange
     var customtext: String = "" {
         didSet {
-            self.setAttributedTitle(
-                NSAttributedString(
-                    string: customtext,
-                    attributes: [
-                        NSAttributedString.Key.foregroundColor: self.customTextColor,
-                        NSAttributedString.Key.font: self.customFont
-                    ]
-                ),
-                for: UIControl.State.normal
-            )
+            self.setTitle(self.customtext, for: .normal)
         }
     }
     
@@ -41,6 +32,8 @@ class CustomButton: UIButton {
         super.init(frame: frame)
         self.customType = type
         self.customFont = font
+        self.mainColor = self.customType == .Dark ? paleOrange : .white
+        self.secondaryColor = self.customType == .Dark ? .white : paleOrange
         self.initializeView()
     }
     
@@ -51,20 +44,20 @@ class CustomButton: UIButton {
     func initializeView() {
         self.layer.cornerRadius = 8
         self.layer.borderWidth = 0.13
-        self.layer.shadowRadius = 0.25
-        self.contentHorizontalAlignment = .left
+        self.layer.shadowRadius = 0.7
+        self.layer.borderColor = mainColor.cgColor
+        self.layer.shadowColor = secondaryColor.cgColor
         self.layer.shadowOffset = CGSize(width: 0.12, height: 0.12)
-        self.titleEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        self.layer.shadowOpacity = 1
+        self.layer.shouldRasterize = true
+        self.layer.rasterizationScale = UIScreen.main.scale
+        
         self.backgroundColor = lightDark
         
-        if customType! == CustomButtonType.Dark {
-            self.layer.borderColor = paleOrange.cgColor
-            self.layer.shadowColor = white.cgColor
-            self.customTextColor = paleOrange
-        } else {
-            self.layer.borderColor = white.cgColor
-            self.layer.shadowColor = paleOrange.cgColor
-            self.customTextColor = white
-        }
+        self.contentHorizontalAlignment = .left
+        self.titleLabel?.font = self.customFont
+        self.setTitleColor(mainColor, for: .normal)
+        self.setTitleColor(paleWhiteRed, for: .highlighted)
+        self.titleEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
 }

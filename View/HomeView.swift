@@ -10,7 +10,7 @@ import UIKit
 
 class HomeView: UICollectionViewCell {
     static let reUseIdentifier: String = "HomeViewIdentifier"
-    let alphas: [CGFloat] = [0.7, 0.25, 0, 0.3, 0.6, 0.7]
+    let alphas: [CGFloat] = [0.8, 0.25, 0, 0.35, 0.7, 0.8]
     
     var getDealButton: CustomButton?
     var findOtherButton: CustomButton?
@@ -26,8 +26,10 @@ class HomeView: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.constraintFrame = frame
         self.backgroundColor = mainBackground
+        self.constraintFrame = frame
+        self.initialize(frame: self.constraintFrame ?? frame)
+        self.initializeButtons(frame: self.constraintFrame ?? frame)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -130,7 +132,7 @@ class HomeView: UICollectionViewCell {
         ])
         
         let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = frame
+        gradientLayer.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
         gradientLayer.colors = []
         self.backgroundImage!.layer.addSublayer(gradientLayer)
         for alpha in alphas {

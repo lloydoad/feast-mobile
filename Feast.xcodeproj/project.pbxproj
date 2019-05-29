@@ -18,6 +18,7 @@
 		4C81AEA5229A5B5100F0DA6C /* LoadableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C81AEA4229A5B5100F0DA6C /* LoadableButton.swift */; };
 		4C81AEA9229B2B1D00F0DA6C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C81AEA8229B2B1D00F0DA6C /* HomeView.swift */; };
 		4C81AEAB229BA8A900F0DA6C /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C81AEAA229BA8A800F0DA6C /* CustomButton.swift */; };
+		4C81AEAF229E097600F0DA6C /* DataSummaryCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C81AEAE229E097600F0DA6C /* DataSummaryCellView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		4C81AEA4229A5B5100F0DA6C /* LoadableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableButton.swift; sourceTree = "<group>"; };
 		4C81AEA8229B2B1D00F0DA6C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4C81AEAA229BA8A800F0DA6C /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		4C81AEAE229E097600F0DA6C /* DataSummaryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSummaryCellView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				4C81AEA8229B2B1D00F0DA6C /* HomeView.swift */,
 				4C81AEA0229A242200F0DA6C /* SettingView.swift */,
 				4C81AEA2229A243700F0DA6C /* HistoryView.swift */,
+				4C81AEAE229E097600F0DA6C /* DataSummaryCellView.swift */,
 				4C81AEA4229A5B5100F0DA6C /* LoadableButton.swift */,
 				4C81AEAA229BA8A800F0DA6C /* CustomButton.swift */,
 			);
@@ -177,6 +180,7 @@
 				4C81AE9F229A18FC00F0DA6C /* Helpers.swift in Sources */,
 				4C81AE852299F9F200F0DA6C /* AppDelegate.swift in Sources */,
 				4C81AEA5229A5B5100F0DA6C /* LoadableButton.swift in Sources */,
+				4C81AEAF229E097600F0DA6C /* DataSummaryCellView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

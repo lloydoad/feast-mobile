@@ -8,6 +8,8 @@
 
 import UIKit
 
+let DEFAULT_BACKGROUND_IMAGE = UIImage(named: "defaultBackground")
+
 func getColor(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) -> UIColor {
     return UIColor(red: red/255, green: green/255, blue: blue/255, alpha: alpha)
 }
@@ -18,6 +20,7 @@ let brightOrange = getColor(red: 255, green: 149, blue: 0, alpha: 1)
 let white = getColor(red: 255, green: 255, blue: 255, alpha: 1)
 let paleWhiteRed = getColor(red: 255, green: 216, blue: 216, alpha: 1)
 let lightDark = getColor(red: 23, green: 23, blue: 23, alpha: 1)
+let red = getColor(red: 193, green: 41, blue: 41, alpha: 1)
 
 let headerOneFont = UIFont.systemFont(ofSize: 60, weight: UIFont.Weight.thin)
 let headerTwoFont = UIFont.systemFont(ofSize: 20, weight: UIFont.Weight.regular)

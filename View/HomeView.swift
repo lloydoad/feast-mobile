@@ -49,7 +49,7 @@ class HomeView: UICollectionViewCell {
         innerStack.distribution = .fill
         
         self.dealClassifier = UILabel(frame: frame)
-        self.dealClassifier?.text = "KOREAN"
+        self.dealClassifier?.text = "KOREAN?"
         self.dealClassifier?.numberOfLines = 0
         self.dealClassifier?.sizeToFit()
         self.dealClassifier?.textColor = .white

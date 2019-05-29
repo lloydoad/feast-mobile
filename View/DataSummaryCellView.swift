@@ -10,8 +10,12 @@ import UIKit
 
 class DataSummaryCellView: UITableViewCell {
     static let reUseIdentifier: String = "DataSummaryCellView"
+    let buttonLabelInterSpace: CGFloat = 35
+    let buttonDimension: CGFloat = 44
+    let cellSeparators: CGFloat = 23
+    let sideSpacing: CGFloat = 10
     
-    var backgroundImageView: UIImageView!
+    var customBackgroundView: UIView!
     var nameLabel: UILabel!
     var locationLabel: UILabel!
     var tagsLabel: UILabel!
@@ -22,6 +26,7 @@ class DataSummaryCellView: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.setupSelfConstraints()
         self.setupContent()
+        self.setupImage()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -29,53 +34,49 @@ class DataSummaryCellView: UITableViewCell {
     }
     
     func setupSelfConstraints() {
-        let spacing: CGFloat = 23
-        
         self.selectionStyle = .none
         self.backgroundColor = mainBackground
         
-        self.backgroundImageView = UIImageView()
-        self.backgroundImageView.clipsToBounds = true
-        self.backgroundImageView.layer.cornerRadius = 8
-        self.backgroundImageView.layer.borderWidth = 0.8
-        self.backgroundImageView.backgroundColor = .clear
-        self.backgroundImageView.contentMode = .scaleAspectFill
-//        self.backgroundImageView.image = DEFAULT_BACKGROUND_IMAGE
-        self.backgroundImageView.layer.borderColor = paleOrange.cgColor
-        self.backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        self.customBackgroundView = UIView()
+        self.customBackgroundView.clipsToBounds = true
+        self.customBackgroundView.layer.cornerRadius = 8
+        self.customBackgroundView.layer.borderWidth = 0.8
+        self.customBackgroundView.backgroundColor = .clear
+        self.customBackgroundView.layer.borderColor = paleOrange.cgColor
+        self.customBackgroundView.translatesAutoresizingMaskIntoConstraints = false
         
-        self.addSubview(self.backgroundImageView)
+        self.addSubview(self.customBackgroundView)
         NSLayoutConstraint.activate([
-            self.backgroundImageView.topAnchor.constraint(equalTo: self.topAnchor),
-            self.backgroundImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            self.backgroundImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            self.backgroundImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -spacing)
+            self.customBackgroundView.topAnchor.constraint(equalTo: self.topAnchor),
+            self.customBackgroundView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            self.customBackgroundView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            self.customBackgroundView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -self.cellSeparators)
         ])
     }
     
     func setupContent() {
-        let labelMinimumHeight: CGFloat = 75
-        let sideSpacing: CGFloat = 10
+        let labelMinimumHeight: CGFloat = 70
         
         let backgroundColorView = UIView()
         backgroundColorView.layer.cornerRadius = 3
         backgroundColorView.layer.borderWidth = 0.8
         backgroundColorView.layer.borderColor = paleOrange.cgColor
         backgroundColorView.translatesAutoresizingMaskIntoConstraints = false
-        backgroundColorView.backgroundColor = getColor(red: 255, green: 255, blue: 255, alpha: 0.7)
+        backgroundColorView.backgroundColor = getColor(red: 255, green: 255, blue: 255, alpha: 0.83)
         
-        self.backgroundImageView.addSubview(backgroundColorView)
+        self.customBackgroundView.addSubview(backgroundColorView)
         NSLayoutConstraint.activate([
             backgroundColorView.heightAnchor.constraint(greaterThanOrEqualToConstant: labelMinimumHeight),
-            backgroundColorView.bottomAnchor.constraint(equalTo: self.backgroundImageView.bottomAnchor, constant: -sideSpacing),
-            backgroundColorView.leadingAnchor.constraint(equalTo: self.backgroundImageView.leadingAnchor, constant: sideSpacing),
-            backgroundColorView.trailingAnchor.constraint(equalTo: self.backgroundImageView.trailingAnchor, constant: -sideSpacing),
+            backgroundColorView.bottomAnchor.constraint(equalTo: self.customBackgroundView.bottomAnchor, constant: -self.sideSpacing),
+            backgroundColorView.leadingAnchor.constraint(equalTo: self.customBackgroundView.leadingAnchor, constant: self.sideSpacing),
+            backgroundColorView.trailingAnchor.constraint(equalTo: self.customBackgroundView.trailingAnchor, constant: -self.sideSpacing),
         ])
         
         let labelStack = UIStackView()
+        labelStack.spacing = 2
         labelStack.axis = .vertical
         labelStack.alignment = .fill
-        labelStack.distribution = .fill
+        labelStack.distribution = .equalCentering
         labelStack.translatesAutoresizingMaskIntoConstraints = false
         
         backgroundColorView.addSubview(labelStack)
@@ -101,6 +102,7 @@ class DataSummaryCellView: UITableViewCell {
         let label = UILabel()
         label.text = title
         label.font = font
+        label.sizeToFit()
         label.numberOfLines = 0
         label.textColor = color
         label.textAlignment = .left
@@ -112,15 +114,15 @@ class DataSummaryCellView: UITableViewCell {
         self.deleteButton = createButton(name: "trashIcon")
         self.mapButton = createButton(name: "mapIcon")
         
-        self.backgroundImageView.addSubview(self.deleteButton)
-        self.backgroundImageView.addSubview(self.mapButton)
+        self.customBackgroundView.addSubview(self.deleteButton)
+        self.customBackgroundView.addSubview(self.mapButton)
         
         NSLayoutConstraint.activate([
-            self.deleteButton.topAnchor.constraint(equalTo: self.backgroundImageView.topAnchor, constant: 10),
-            self.deleteButton.trailingAnchor.constraint(equalTo: self.backgroundImageView.trailingAnchor, constant: -10),
-            self.mapButton.topAnchor.constraint(equalTo: self.deleteButton.bottomAnchor, constant: 10),
-            self.mapButton.trailingAnchor.constraint(equalTo: self.backgroundImageView.trailingAnchor, constant: -10),
-            self.mapButton.bottomAnchor.constraint(equalTo: bottomView.topAnchor, constant: -35)
+            self.deleteButton.topAnchor.constraint(equalTo: self.customBackgroundView.topAnchor, constant: self.sideSpacing),
+            self.deleteButton.trailingAnchor.constraint(equalTo: self.customBackgroundView.trailingAnchor, constant: -self.sideSpacing),
+            self.mapButton.topAnchor.constraint(equalTo: self.deleteButton.bottomAnchor, constant: self.sideSpacing),
+            self.mapButton.trailingAnchor.constraint(equalTo: self.customBackgroundView.trailingAnchor, constant: -self.sideSpacing),
+            self.mapButton.bottomAnchor.constraint(equalTo: bottomView.topAnchor, constant: -self.buttonLabelInterSpace)
         ])
     }
     
@@ -131,10 +133,27 @@ class DataSummaryCellView: UITableViewCell {
         button.layer.borderColor = paleOrange.cgColor
         button.setImage(UIImage(named: name), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.widthAnchor.constraint(equalToConstant: 44).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        button.widthAnchor.constraint(equalToConstant: self.buttonDimension).isActive = true
+        button.heightAnchor.constraint(equalToConstant: self.buttonDimension).isActive = true
         button.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        button.backgroundColor = getColor(red: 255, green: 255, blue: 255, alpha: 0.7)
+        button.backgroundColor = getColor(red: 255, green: 255, blue: 255, alpha: 0.83)
         return button
+    }
+    
+    func setupImage() {
+        let backgroundImage = UIImageView()
+        backgroundImage.clipsToBounds = true
+        backgroundImage.backgroundColor = .clear
+        backgroundImage.contentMode = .scaleAspectFill
+        backgroundImage.image = DEFAULT_BACKGROUND_IMAGE
+        backgroundImage.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.customBackgroundView.insertSubview(backgroundImage, at: 0)
+        NSLayoutConstraint.activate([
+            backgroundImage.heightAnchor.constraint(equalToConstant: 650),
+            backgroundImage.widthAnchor.constraint(equalTo: self.customBackgroundView.widthAnchor),
+            backgroundImage.centerXAnchor.constraint(equalTo: self.customBackgroundView.centerXAnchor),
+            backgroundImage.centerYAnchor.constraint(equalTo: self.customBackgroundView.centerYAnchor)
+        ])
     }
 }

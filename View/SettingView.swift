@@ -11,15 +11,16 @@ import UIKit
 class SettingView: UICollectionViewCell, UIPickerViewDelegate, UIPickerViewDataSource {
     static let identifier: String = "SettingViewCellIdentifier"
     
-    var questionCount: Int = 4
-    var isShowingQuestionCountStack: Bool = false
-    var questionCountOptions: [Int] = [3,4,5]
-    var mainStack: UIStackView!
+    var questionAmount: Int = 4
+    var questionAmountOptions: [Int] = [3,4,5]
+    var isShowingQuestionAmountView: Bool = false
+    
+    var mainButtonStack: UIStackView!
     var notificationsSwitch: UISwitch!
-    var questionCountButton: CustomButton!
-    var suggestionsButton: CustomButton!
+    var questionAmountPickerStack: UIStackView!
     var legalButton: CustomButton!
-    var questionCountStack: UIStackView!
+    var suggestionsButton: CustomButton!
+    var questionCountButton: CustomButton!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,39 +35,38 @@ class SettingView: UICollectionViewCell, UIPickerViewDelegate, UIPickerViewDataS
     
     func setupBackground() {
         let space: CGFloat = 20
-        let contentWidth:CGFloat = frame.width - (2 * space)
         let topOffset: CGFloat = 115
         let buttonHeight: CGFloat = 53
+        let contentWidth:CGFloat = frame.width - (2 * space)
         
-        self.backgroundColor = mainBackground
-        
-        self.mainStack = UIStackView()
-        self.mainStack.alignment = .fill
-        self.mainStack.distribution = .fill
-        self.mainStack.axis = .vertical
-        self.mainStack.spacing = 16
-        self.mainStack.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(self.mainStack)
+        self.mainButtonStack = UIStackView()
+        self.mainButtonStack.alignment = .fill
+        self.mainButtonStack.distribution = .fill
+        self.mainButtonStack.axis = .vertical
+        self.mainButtonStack.spacing = 16
+        self.mainButtonStack.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(self.mainButtonStack)
         
         NSLayoutConstraint.activate([
-            self.mainStack.widthAnchor.constraint(equalToConstant: contentWidth),
-            self.mainStack.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            self.mainStack.topAnchor.constraint(equalTo: self.topAnchor, constant: topOffset),
-            self.mainStack.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            self.mainButtonStack.widthAnchor.constraint(equalToConstant: contentWidth),
+            self.mainButtonStack.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            self.mainButtonStack.topAnchor.constraint(equalTo: self.topAnchor, constant: topOffset),
+            self.mainButtonStack.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
         
-        self.setupButtons(stack: mainStack, height: buttonHeight)
-        self.mainStack.addArrangedSubview(UIView())
+        self.setupButtons(stack: mainButtonStack, height: buttonHeight)
+        self.mainButtonStack.addArrangedSubview(UIView())
     }
     
     func setupButtons(stack: UIStackView, height: CGFloat) {
         let buttonFrame = CGRect(x: 0, y: 0, width: stack.frame.width, height: height)
         
-        self.questionCountButton = addButtonBase(frame: buttonFrame, stack: stack, title: "Number of Questions: \(questionCount)", isEnabled: true)
+        self.questionCountButton = addButtonBase(frame: buttonFrame, stack: stack, title: "Number of Questions: \(questionAmount)", isEnabled: true)
         self.questionCountButton.addTarget(self, action: #selector(self.respondToQuestionCountButton), for: .touchUpInside)
         
         let notificationsButton = addButtonBase(frame: buttonFrame, stack: stack, title: "Notifications", isEnabled: true)
         notificationsButton.setTitleColor(.white, for: .highlighted)
+        
         self.notificationsSwitch = UISwitch()
         self.notificationsSwitch.onTintColor = paleOrange
         self.notificationsSwitch.tintColor = .white
@@ -100,60 +100,60 @@ class SettingView: UICollectionViewCell, UIPickerViewDelegate, UIPickerViewDataS
     }
     
     @objc func respondToQuestionCountButton() {
-        guard !self.isShowingQuestionCountStack else {
+        guard !self.isShowingQuestionAmountView else {
             UIView.animate(withDuration: 0.15, animations: {
-                self.questionCountStack.alpha = 0
+                self.questionAmountPickerStack.alpha = 0
             }) { (_) in
-                self.mainStack.removeArrangedSubview(self.questionCountStack)
-                self.questionCountStack = nil
-                self.isShowingQuestionCountStack = false
+                self.mainButtonStack.removeArrangedSubview(self.questionAmountPickerStack)
+                self.isShowingQuestionAmountView = false
+                self.questionAmountPickerStack = nil
             }
             return
         }
         
-        self.isShowingQuestionCountStack = true
-        self.questionCountStack = UIStackView()
-        self.questionCountStack.alpha = 0
-        self.questionCountStack.axis = .vertical
-        self.questionCountStack.alignment = .fill
-        self.questionCountStack.distribution = .fill
-        self.questionCountStack.translatesAutoresizingMaskIntoConstraints = false
-        self.questionCountStack.heightAnchor.constraint(equalToConstant: 53 + 16 + 82).isActive = true
+        self.isShowingQuestionAmountView = true
+        self.questionAmountPickerStack = UIStackView()
+        self.questionAmountPickerStack.alpha = 0
+        self.questionAmountPickerStack.axis = .vertical
+        self.questionAmountPickerStack.alignment = .fill
+        self.questionAmountPickerStack.distribution = .fill
+        self.questionAmountPickerStack.translatesAutoresizingMaskIntoConstraints = false
+        self.questionAmountPickerStack.heightAnchor.constraint(equalToConstant: 53 + 16 + 82).isActive = true
         
         let infoView = UIView()
-        let infoTextLabel = UILabel()
-        infoTextLabel.text = "The higher the number of questions, the more accurate, our suggestions can be."
-        infoTextLabel.backgroundColor = mainBackground
-        infoTextLabel.textAlignment = .left
-        infoTextLabel.numberOfLines = 0
-        infoTextLabel.textColor = .white
-        infoTextLabel.font = infoFont
-        infoTextLabel.sizeToFit()
-        
-        infoTextLabel.translatesAutoresizingMaskIntoConstraints = false
-        infoView.addSubview(infoTextLabel)
-        NSLayoutConstraint.activate([
-            infoTextLabel.topAnchor.constraint(equalTo: infoView.topAnchor),
-            infoTextLabel.leadingAnchor.constraint(equalTo: infoView.leadingAnchor, constant: 14),
-            infoTextLabel.trailingAnchor.constraint(equalTo: infoView.trailingAnchor, constant: -14),
-            infoTextLabel.bottomAnchor.constraint(equalTo: infoView.bottomAnchor, constant: -14)
-        ])
+        let infoViewText = UILabel()
+        infoViewText.text = "The higher the number of questions, the more accurate, our suggestions can be."
+        infoViewText.sizeToFit()
+        infoViewText.font = infoFont
+        infoViewText.numberOfLines = 0
+        infoViewText.textColor = .white
+        infoViewText.textAlignment = .left
+        infoViewText.backgroundColor = mainBackground
         
         infoView.translatesAutoresizingMaskIntoConstraints = false
         infoView.heightAnchor.constraint(greaterThanOrEqualToConstant: 53).isActive = true
-        self.questionCountStack.addArrangedSubview(infoView)
+        self.questionAmountPickerStack.addArrangedSubview(infoView)
         
-        let countPicker = UIPickerView()
-        countPicker.dataSource = self
-        countPicker.delegate = self
-        countPicker.backgroundColor = .clear
-        countPicker.showsSelectionIndicator = true
-        self.questionCountStack.addArrangedSubview(countPicker)
-        countPicker.selectRow(self.questionCount - 3, inComponent: 0, animated: false)
+        infoViewText.translatesAutoresizingMaskIntoConstraints = false
+        infoView.addSubview(infoViewText)
+        NSLayoutConstraint.activate([
+            infoViewText.topAnchor.constraint(equalTo: infoView.topAnchor),
+            infoViewText.leadingAnchor.constraint(equalTo: infoView.leadingAnchor, constant: 14),
+            infoViewText.trailingAnchor.constraint(equalTo: infoView.trailingAnchor, constant: -14),
+            infoViewText.bottomAnchor.constraint(equalTo: infoView.bottomAnchor, constant: -14)
+        ])
         
-        self.mainStack.insertArrangedSubview(self.questionCountStack, at: 1)
+        let questionAmountPicker = UIPickerView()
+        questionAmountPicker.dataSource = self
+        questionAmountPicker.delegate = self
+        questionAmountPicker.backgroundColor = .clear
+        questionAmountPicker.showsSelectionIndicator = true
+        self.questionAmountPickerStack.addArrangedSubview(questionAmountPicker)
+        questionAmountPicker.selectRow(self.questionAmount - 3, inComponent: 0, animated: false)
+        
+        self.mainButtonStack.insertArrangedSubview(self.questionAmountPickerStack, at: 1)
         UIView.animate(withDuration: 0.14) {
-            self.questionCountStack.alpha = 1
+            self.questionAmountPickerStack.alpha = 1
         }
     }
     
@@ -162,19 +162,19 @@ class SettingView: UICollectionViewCell, UIPickerViewDelegate, UIPickerViewDataS
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return self.questionCountOptions.count
+        return self.questionAmountOptions.count
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let label = UILabel()
-        label.text = "\(self.questionCountOptions[row])"
+        label.text = "\(self.questionAmountOptions[row])"
         label.textColor = .white
         label.textAlignment = .center
         return label
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.questionCount = row + 3
-        self.questionCountButton.customtext = "Number of Questions: \(self.questionCount)"
+        self.questionAmount = row + 3
+        self.questionCountButton.customtext = "Number of Questions: \(self.questionAmount)"
     }
 }

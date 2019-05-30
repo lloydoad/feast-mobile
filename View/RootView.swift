@@ -131,7 +131,9 @@ class RootView: UIViewController, UICollectionViewDelegate, UICollectionViewData
         if indexPath.row == 0 {
             return self.collectionView.dequeueReusableCell(withReuseIdentifier: HistoryView.identifier, for: indexPath) as! HistoryView
         } else if indexPath.row == 1 {
-            return self.collectionView.dequeueReusableCell(withReuseIdentifier: HomeView.reUseIdentifier, for: indexPath) as! HomeView
+            let homeview = self.collectionView.dequeueReusableCell(withReuseIdentifier: HomeView.reUseIdentifier, for: indexPath) as! HomeView
+            homeview.findOtherButton?.addTarget(self, action: #selector(presentRestaurantSurvey), for: .touchUpInside)
+            return homeview
         } else {
             return self.collectionView.dequeueReusableCell(withReuseIdentifier: SettingView.identifier, for: indexPath) as! SettingView
         }

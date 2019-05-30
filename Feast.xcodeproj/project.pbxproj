@@ -18,6 +18,11 @@
 		4C81AEA9229B2B1D00F0DA6C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C81AEA8229B2B1D00F0DA6C /* HomeView.swift */; };
 		4C81AEAB229BA8A900F0DA6C /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C81AEAA229BA8A800F0DA6C /* CustomButton.swift */; };
 		4C81AEAF229E097600F0DA6C /* DataSummaryCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C81AEAE229E097600F0DA6C /* DataSummaryCellView.swift */; };
+		4C81AEB1229F586300F0DA6C /* SurveyNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C81AEB0229F586300F0DA6C /* SurveyNavigationView.swift */; };
+		4C81AEB3229F5A1400F0DA6C /* SurveyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C81AEB2229F5A1400F0DA6C /* SurveyView.swift */; };
+		4C81AEB6229F5D1C00F0DA6C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C81AEB5229F5D1C00F0DA6C /* HomeViewController.swift */; };
+		4C81AEB8229F6BE000F0DA6C /* SurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C81AEB7229F6BE000F0DA6C /* SurveyViewController.swift */; };
+		4C81AEBA229F842E00F0DA6C /* SurveyOptionCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C81AEB9229F842E00F0DA6C /* SurveyOptionCellView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +39,11 @@
 		4C81AEA8229B2B1D00F0DA6C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4C81AEAA229BA8A800F0DA6C /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		4C81AEAE229E097600F0DA6C /* DataSummaryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSummaryCellView.swift; sourceTree = "<group>"; };
+		4C81AEB0229F586300F0DA6C /* SurveyNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyNavigationView.swift; sourceTree = "<group>"; };
+		4C81AEB2229F5A1400F0DA6C /* SurveyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyView.swift; sourceTree = "<group>"; };
+		4C81AEB5229F5D1C00F0DA6C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		4C81AEB7229F6BE000F0DA6C /* SurveyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyViewController.swift; sourceTree = "<group>"; };
+		4C81AEB9229F842E00F0DA6C /* SurveyOptionCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyOptionCellView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +62,7 @@
 			children = (
 				4C81AE982299FDC800F0DA6C /* Constants */,
 				4C81AE9B229A105400F0DA6C /* View */,
+				4C81AEB4229F5CEF00F0DA6C /* Controller */,
 				4C81AE832299F9F200F0DA6C /* Feast */,
 				4C81AE822299F9F200F0DA6C /* Products */,
 			);
@@ -91,11 +102,23 @@
 				4C81AEA8229B2B1D00F0DA6C /* HomeView.swift */,
 				4C81AEA0229A242200F0DA6C /* SettingView.swift */,
 				4C81AEA2229A243700F0DA6C /* HistoryView.swift */,
+				4C81AEB2229F5A1400F0DA6C /* SurveyView.swift */,
+				4C81AEB9229F842E00F0DA6C /* SurveyOptionCellView.swift */,
+				4C81AEB0229F586300F0DA6C /* SurveyNavigationView.swift */,
 				4C81AEAE229E097600F0DA6C /* DataSummaryCellView.swift */,
 				4C81AEAA229BA8A800F0DA6C /* CustomButton.swift */,
 				4C81AEA4229A5B5100F0DA6C /* LoadableButton.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		4C81AEB4229F5CEF00F0DA6C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4C81AEB5229F5D1C00F0DA6C /* HomeViewController.swift */,
+				4C81AEB7229F6BE000F0DA6C /* SurveyViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,14 +192,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C81AEA3229A243700F0DA6C /* HistoryView.swift in Sources */,
+				4C81AEBA229F842E00F0DA6C /* SurveyOptionCellView.swift in Sources */,
 				4C81AE972299FCF300F0DA6C /* RootView.swift in Sources */,
+				4C81AEB3229F5A1400F0DA6C /* SurveyView.swift in Sources */,
 				4C81AEA9229B2B1D00F0DA6C /* HomeView.swift in Sources */,
 				4C81AE9A2299FDDB00F0DA6C /* Constants.swift in Sources */,
 				4C81AEAB229BA8A900F0DA6C /* CustomButton.swift in Sources */,
 				4C81AEA1229A242200F0DA6C /* SettingView.swift in Sources */,
 				4C81AE852299F9F200F0DA6C /* AppDelegate.swift in Sources */,
 				4C81AEA5229A5B5100F0DA6C /* LoadableButton.swift in Sources */,
+				4C81AEB1229F586300F0DA6C /* SurveyNavigationView.swift in Sources */,
+				4C81AEB8229F6BE000F0DA6C /* SurveyViewController.swift in Sources */,
 				4C81AEAF229E097600F0DA6C /* DataSummaryCellView.swift in Sources */,
+				4C81AEB6229F5D1C00F0DA6C /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,6 +21,8 @@ class SurveyView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var mainStack: UIStackView!
     var previousSelection: String?
     
+    var questions: [Int] = [1,1,1,1,1,1]
+    
     var isInitialQuestionnaire: Bool = true {
         didSet {
             self.setupNavigationItems()
@@ -33,6 +35,8 @@ class SurveyView: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.setupNavigationController()
         self.setupNavigationItems()
         self.setupContents()
+        
+        self.optionTable.register(SurveyOptionCellView.self, forCellReuseIdentifier: SurveyOptionCellView.reUseIdentifier)
     }
     
     func setupNavigationController() {
@@ -83,6 +87,7 @@ class SurveyView: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.optionTable.delegate = self
         self.optionTable.dataSource = self
         self.optionTable.separatorStyle = .none
+        self.optionTable.allowsMultipleSelection = false
         self.optionTable.backgroundColor = mainBackground
         
         self.view.addSubview(mainStack)

@@ -8,20 +8,20 @@
 
 import UIKit
 
-extension SurveyView {
-    
+extension SurveyView {    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.optionTable.frame.height / 6
+        return self.optionTable.frame.height / CGFloat(self.questions.count)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return questions.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: SurveyOptionCellView.reUseIdentifier, for: indexPath) as! SurveyOptionCellView
+        cell.title = "Yeet??"
         return UITableViewCell()
     }
-    
     
     @objc func refreshInitialSurveyContents() {
         print("NOT SET")

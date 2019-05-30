@@ -133,10 +133,10 @@ class DataSummaryCellView: UITableViewCell {
         button.layer.borderColor = paleOrange.cgColor
         button.setImage(UIImage(named: name), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.widthAnchor.constraint(equalToConstant: self.buttonDimension).isActive = true
-        button.heightAnchor.constraint(equalToConstant: self.buttonDimension).isActive = true
         button.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         button.backgroundColor = getColor(red: 255, green: 255, blue: 255, alpha: 0.83)
+        button.widthAnchor.constraint(equalToConstant: self.buttonDimension).isActive = true
+        button.heightAnchor.constraint(equalToConstant: self.buttonDimension).isActive = true
         return button
     }
     

@@ -53,7 +53,6 @@ class CustomButton: UIButton {
         self.layer.rasterizationScale = UIScreen.main.scale
         
         self.backgroundColor = lightDark
-        
         self.contentHorizontalAlignment = .left
         self.titleLabel?.font = self.customFont
         self.setTitleColor(mainColor, for: .normal)

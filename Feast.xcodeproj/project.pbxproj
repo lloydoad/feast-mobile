@@ -12,7 +12,6 @@
 		4C81AE8F2299F9F400F0DA6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C81AE8D2299F9F400F0DA6C /* LaunchScreen.storyboard */; };
 		4C81AE972299FCF300F0DA6C /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C81AE962299FCF300F0DA6C /* RootView.swift */; };
 		4C81AE9A2299FDDB00F0DA6C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C81AE992299FDDB00F0DA6C /* Constants.swift */; };
-		4C81AE9F229A18FC00F0DA6C /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C81AE9E229A18FC00F0DA6C /* Helpers.swift */; };
 		4C81AEA1229A242200F0DA6C /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C81AEA0229A242200F0DA6C /* SettingView.swift */; };
 		4C81AEA3229A243700F0DA6C /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C81AEA2229A243700F0DA6C /* HistoryView.swift */; };
 		4C81AEA5229A5B5100F0DA6C /* LoadableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C81AEA4229A5B5100F0DA6C /* LoadableButton.swift */; };
@@ -29,7 +28,6 @@
 		4C81AE902299F9F400F0DA6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C81AE962299FCF300F0DA6C /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		4C81AE992299FDDB00F0DA6C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		4C81AE9E229A18FC00F0DA6C /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		4C81AEA0229A242200F0DA6C /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		4C81AEA2229A243700F0DA6C /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		4C81AEA4229A5B5100F0DA6C /* LoadableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableButton.swift; sourceTree = "<group>"; };
@@ -71,7 +69,6 @@
 			isa = PBXGroup;
 			children = (
 				4C81AE842299F9F200F0DA6C /* AppDelegate.swift */,
-				4C81AE9E229A18FC00F0DA6C /* Helpers.swift */,
 				4C81AE8B2299F9F400F0DA6C /* Assets.xcassets */,
 				4C81AE8D2299F9F400F0DA6C /* LaunchScreen.storyboard */,
 				4C81AE902299F9F400F0DA6C /* Info.plist */,
@@ -95,8 +92,8 @@
 				4C81AEA0229A242200F0DA6C /* SettingView.swift */,
 				4C81AEA2229A243700F0DA6C /* HistoryView.swift */,
 				4C81AEAE229E097600F0DA6C /* DataSummaryCellView.swift */,
-				4C81AEA4229A5B5100F0DA6C /* LoadableButton.swift */,
 				4C81AEAA229BA8A800F0DA6C /* CustomButton.swift */,
+				4C81AEA4229A5B5100F0DA6C /* LoadableButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -177,7 +174,6 @@
 				4C81AE9A2299FDDB00F0DA6C /* Constants.swift in Sources */,
 				4C81AEAB229BA8A900F0DA6C /* CustomButton.swift in Sources */,
 				4C81AEA1229A242200F0DA6C /* SettingView.swift in Sources */,
-				4C81AE9F229A18FC00F0DA6C /* Helpers.swift in Sources */,
 				4C81AE852299F9F200F0DA6C /* AppDelegate.swift in Sources */,
 				4C81AEA5229A5B5100F0DA6C /* LoadableButton.swift in Sources */,
 				4C81AEAF229E097600F0DA6C /* DataSummaryCellView.swift in Sources */,

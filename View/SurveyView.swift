@@ -16,17 +16,29 @@ enum InstructionType: String {
 class SurveyView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let spacing: CGFloat = 25
     
-    var instructionLabel: UILabel!
-    var optionTable: UITableView!
-    var mainStack: UIStackView!
-    var previousSelection: String?
+    private var instructionLabel: UILabel!
+    private var mainStack: UIStackView!
+    private var optionTable: UITableView!
     
+    var previousSelection: String? = nil
+    var instructionText: String = ""
+    var optionTableCellButtonHeight: CGFloat = 90
     var questions: [Int] = [1,1,1,1,1,1]
+    var reviews: [Int] = [1,1,1,1]
     
+    var remainingQuestions: Int = 3 {
+        didSet {
+            self.isFinalQuestionnaire = self.remainingQuestions == 1 ? true : false
+        }
+    }
+    var isFinalQuestionnaire: Bool = false {
+        didSet {
+            self.instructionText = self.isFinalQuestionnaire ? InstructionType.Reviews.rawValue : InstructionType.Classifiers.rawValue
+        }
+    }
     var isInitialQuestionnaire: Bool = true {
         didSet {
             self.setupNavigationItems()
-            print("set back")
         }
     }
     
@@ -76,21 +88,23 @@ class SurveyView: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.mainStack.distribution = .fill
         self.mainStack.translatesAutoresizingMaskIntoConstraints = false
         
+        self.optionTable = UITableView()
+        self.optionTable.delegate = self
+        self.optionTable.dataSource = self
+        self.optionTable.separatorStyle = .none
+        self.optionTable.allowsSelection = false
+        self.optionTable.backgroundColor = mainBackground
+        self.optionTable.showsVerticalScrollIndicator = false
+        self.optionTable.estimatedRowHeight = self.optionTableCellButtonHeight
+        
         self.instructionLabel = UILabel()
         self.instructionLabel.numberOfLines = 0
         self.instructionLabel.textColor = paleOrange
         self.instructionLabel.font = headerThreeFont
         self.instructionLabel.backgroundColor = .clear
-        self.instructionLabel.text = InstructionType.Classifiers.rawValue
+        self.instructionLabel.text = self.instructionText
         
-        self.optionTable = UITableView()
-        self.optionTable.delegate = self
-        self.optionTable.dataSource = self
-        self.optionTable.separatorStyle = .none
-        self.optionTable.allowsMultipleSelection = false
-        self.optionTable.backgroundColor = mainBackground
-        
-        self.view.addSubview(mainStack)
+        self.view.addSubview(self.mainStack)
         self.mainStack.addArrangedSubview(self.instructionLabel)
         self.mainStack.addArrangedSubview(self.optionTable)
         
@@ -103,6 +117,7 @@ class SurveyView: UIViewController, UITableViewDelegate, UITableViewDataSource {
             button.customtext = previousSelection
             button.translatesAutoresizingMaskIntoConstraints = false
             button.heightAnchor.constraint(equalTo: button.titleLabel!.heightAnchor, constant: 20).isActive = true
+            button.addTarget(self, action: #selector(self.goToPreviousSurvey), for: .touchUpInside)
             self.mainStack.insertArrangedSubview(button, at: 1)
         }
         

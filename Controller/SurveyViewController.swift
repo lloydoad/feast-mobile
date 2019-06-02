@@ -10,17 +10,66 @@ import UIKit
 
 extension SurveyView {    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.optionTable.frame.height / CGFloat(self.questions.count)
+        if self.isFinalQuestionnaire {
+            return UITableView.automaticDimension
+        } else {
+            return self.optionTableCellButtonHeight
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return questions.count
+        if self.isFinalQuestionnaire {
+            return self.reviews.count
+        } else {
+            return self.questions.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SurveyOptionCellView.reUseIdentifier, for: indexPath) as! SurveyOptionCellView
-        cell.title = "Yeet??"
-        return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SurveyOptionCellView.reUseIdentifier, for: indexPath) as? SurveyOptionCellView else {
+            assertionFailure("Unable to Dequeue Survey Option Cell View")
+            return UITableViewCell()
+        }
+        
+        if self.isFinalQuestionnaire {
+            cell.contentButton.titleLabel?.font = headerFiveFont
+            cell.contentButton.setTitle(
+                """
+                I love this place you get a huge slice of
+                pizza for $4.25 you can’t beat that. Like
+                that’s crazy! I got a slice with red
+                sauce, pepperoni, onions extra…
+                """,
+                for: .normal)
+            cell.contentButton.titleLabel?.sizeToFit()
+            cell.contentButton.addTarget(self, action: #selector(self.didSelectPreferredReview(sender:)), for: .touchUpInside)
+        } else {
+            cell.contentButton.setTitle("\(indexPath.row)", for: .normal)
+            cell.contentButton.addTarget(self, action: #selector(self.didSelectClassifier(sender:)), for: .touchUpInside)
+        }
+        
+        return cell
+    }
+    
+    @objc func didSelectPreferredReview(sender: CustomButton) {
+        print("review")
+    }
+    
+    @objc func didSelectClassifier(sender: CustomButton) {
+        guard let classifier = sender.titleLabel?.text else { return }
+        
+        var previousSelectionString: String = ""
+        if let previousSelection = self.previousSelection {
+            previousSelectionString.append(contentsOf: "\(previousSelection), ")
+        }
+        previousSelectionString.append(contentsOf: classifier)
+        
+        let subsequentSurveyView = SurveyView()
+        subsequentSurveyView.previousSelection = previousSelectionString
+        subsequentSurveyView.isInitialQuestionnaire = false
+        subsequentSurveyView.remainingQuestions = self.remainingQuestions - 1
+        
+        self.navigationController?.pushViewController(subsequentSurveyView, animated: true)
     }
     
     @objc func refreshInitialSurveyContents() {
@@ -32,6 +81,6 @@ extension SurveyView {
     }
     
     @objc func goToPreviousSurvey() {
-        print("NOT SET")
+        self.navigationController?.popViewController(animated: true)
     }
 }

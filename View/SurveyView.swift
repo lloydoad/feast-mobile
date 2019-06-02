@@ -46,9 +46,10 @@ class SurveyView: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.view.backgroundColor = mainBackground
         self.setupNavigationController()
         self.setupNavigationItems()
-        self.setupContents()
-        
-        self.optionTable.register(SurveyOptionCellView.self, forCellReuseIdentifier: SurveyOptionCellView.reUseIdentifier)
+        self.setupMainStack()
+        self.setupOptionTable()
+        self.setupInstructionLabel()
+        self.setupConstraints()
     }
     
     func setupNavigationController() {
@@ -80,14 +81,16 @@ class SurveyView: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func setupContents() {
+    func setupMainStack() {
         self.mainStack = UIStackView()
         self.mainStack.spacing = spacing
         self.mainStack.axis = .vertical
         self.mainStack.alignment = .fill
         self.mainStack.distribution = .fill
         self.mainStack.translatesAutoresizingMaskIntoConstraints = false
-        
+    }
+    
+    func setupOptionTable() {
         self.optionTable = UITableView()
         self.optionTable.delegate = self
         self.optionTable.dataSource = self
@@ -96,14 +99,19 @@ class SurveyView: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.optionTable.backgroundColor = mainBackground
         self.optionTable.showsVerticalScrollIndicator = false
         self.optionTable.estimatedRowHeight = self.optionTableCellButtonHeight
-        
+        self.optionTable.register(SurveyOptionCellView.self, forCellReuseIdentifier: SurveyOptionCellView.reUseIdentifier)
+    }
+    
+    func setupInstructionLabel() {
         self.instructionLabel = UILabel()
         self.instructionLabel.numberOfLines = 0
         self.instructionLabel.textColor = paleOrange
         self.instructionLabel.font = headerThreeFont
         self.instructionLabel.backgroundColor = .clear
         self.instructionLabel.text = self.instructionText
-        
+    }
+    
+    func setupConstraints() {
         self.view.addSubview(self.mainStack)
         self.mainStack.addArrangedSubview(self.instructionLabel)
         self.mainStack.addArrangedSubview(self.optionTable)

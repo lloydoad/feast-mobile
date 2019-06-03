@@ -12,7 +12,7 @@ extension SurveyView {
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         guard let frame = self.selectedFrame else { return nil }
         guard let text = self.sequeSelectionString else { return nil }
-        let duration: TimeInterval = TimeInterval(UINavigationController.hideShowBarDuration)
+        let duration: TimeInterval = 6 // TimeInterval(UINavigationController.hideShowBarDuration)
         
         switch operation {
         case .push:

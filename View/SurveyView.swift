@@ -58,7 +58,7 @@ class SurveyView: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     
     func setupNavigationController() {
         guard let navigationController = self.navigationController else { return }
-        navigationController.delegate = self
+//        navigationController.delegate = self
         navigationController.navigationBar.isTranslucent = false
         navigationController.navigationBar.tintColor = paleOrange
         navigationController.navigationBar.barTintColor = mainBackground

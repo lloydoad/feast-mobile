@@ -14,6 +14,8 @@ extension RootView {
 //        surveyView.previousSelection = "American (Traditional), Pizza, Bar, Night Life"
         surveyView.remainingQuestions = 3
         let surveyViewNavigationController = SurveyNavigationView(rootViewController: surveyView)
+        surveyViewNavigationController.delegate = surveyView
+        
         self.present(surveyViewNavigationController, animated: true, completion: nil)
     }
 }

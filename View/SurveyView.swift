@@ -13,14 +13,18 @@ enum InstructionType: String {
     case Reviews = "Here are some shortened reviews, based on your picks. Which one do you prefer?"
 }
 
-class SurveyView: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SurveyView: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate {
     let spacing: CGFloat = 25
     
     private var instructionLabel: UILabel!
     private var mainStack: UIStackView!
-    private var optionTable: UITableView!
+    var optionTable: UITableView!
     
-    var previousSelection: String? = nil
+    var previousSelectionButton: CustomButton?
+    var selectedFrame: CGRect?
+    var sequeSelectionString: String?
+    
+    var previousSelectionString: String? = nil
     var instructionText: String = ""
     var optionTableCellButtonHeight: CGFloat = 90
     var questions: [Int] = [1,1,1,1,1,1]
@@ -54,6 +58,7 @@ class SurveyView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func setupNavigationController() {
         guard let navigationController = self.navigationController else { return }
+        navigationController.delegate = self
         navigationController.navigationBar.isTranslucent = false
         navigationController.navigationBar.tintColor = paleOrange
         navigationController.navigationBar.barTintColor = mainBackground
@@ -116,7 +121,7 @@ class SurveyView: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.mainStack.addArrangedSubview(self.instructionLabel)
         self.mainStack.addArrangedSubview(self.optionTable)
         
-        if let previousSelection = self.previousSelection {
+        if let previousSelection = self.previousSelectionString {
             let height: CGFloat = 53
             let width: CGFloat = self.mainStack.frame.width
             let frame: CGRect = CGRect(x: 0, y: 0, width: width, height: height)
@@ -126,6 +131,8 @@ class SurveyView: UIViewController, UITableViewDelegate, UITableViewDataSource {
             button.translatesAutoresizingMaskIntoConstraints = false
             button.heightAnchor.constraint(equalTo: button.titleLabel!.heightAnchor, constant: 20).isActive = true
             button.addTarget(self, action: #selector(self.goToPreviousSurvey), for: .touchUpInside)
+            self.previousSelectionButton = button
+            self.previousSelectionButton?.tag = SurveyViewAnimator.CustomAnimatorTag
             self.mainStack.insertArrangedSubview(button, at: 1)
         }
         

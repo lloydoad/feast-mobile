@@ -8,7 +8,22 @@
 
 import UIKit
 
-extension SurveyView {    
+extension SurveyView {
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        guard let frame = self.selectedFrame else { return nil }
+        guard let text = self.sequeSelectionString else { return nil }
+        let duration: TimeInterval = TimeInterval(UINavigationController.hideShowBarDuration)
+        
+        switch operation {
+        case .push:
+            return SurveyViewAnimator(duration: duration, isPresenting: true, originFrame: frame, previousSelectionString: text)
+        case .pop:
+            return SurveyViewAnimator(duration: duration, isPresenting: false, originFrame: frame, previousSelectionString: text)
+        default:
+            return SurveyViewAnimator(duration: duration, isPresenting: false, originFrame: frame, previousSelectionString: text)
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if self.isFinalQuestionnaire {
             return UITableView.automaticDimension
@@ -59,15 +74,18 @@ extension SurveyView {
         guard let classifier = sender.titleLabel?.text else { return }
         
         var previousSelectionString: String = ""
-        if let previousSelection = self.previousSelection {
+        if let previousSelection = self.previousSelectionString {
             previousSelectionString.append(contentsOf: "\(previousSelection), ")
         }
         previousSelectionString.append(contentsOf: classifier)
         
         let subsequentSurveyView = SurveyView()
-        subsequentSurveyView.previousSelection = previousSelectionString
+        subsequentSurveyView.previousSelectionString = previousSelectionString
         subsequentSurveyView.isInitialQuestionnaire = false
         subsequentSurveyView.remainingQuestions = self.remainingQuestions - 1
+        
+        self.selectedFrame = sender.superview?.convert(sender.frame, to: nil)
+        self.sequeSelectionString = previousSelectionString
         
         self.navigationController?.pushViewController(subsequentSurveyView, animated: true)
     }

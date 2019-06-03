@@ -23,6 +23,7 @@
 		4C81AEB6229F5D1C00F0DA6C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C81AEB5229F5D1C00F0DA6C /* HomeViewController.swift */; };
 		4C81AEB8229F6BE000F0DA6C /* SurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C81AEB7229F6BE000F0DA6C /* SurveyViewController.swift */; };
 		4C81AEBA229F842E00F0DA6C /* SurveyOptionCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C81AEB9229F842E00F0DA6C /* SurveyOptionCellView.swift */; };
+		4C91E84F22A3AC37006FD6DC /* SurveyViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C91E84E22A3AC37006FD6DC /* SurveyViewAnimator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		4C81AEB5229F5D1C00F0DA6C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4C81AEB7229F6BE000F0DA6C /* SurveyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyViewController.swift; sourceTree = "<group>"; };
 		4C81AEB9229F842E00F0DA6C /* SurveyOptionCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyOptionCellView.swift; sourceTree = "<group>"; };
+		4C91E84E22A3AC37006FD6DC /* SurveyViewAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyViewAnimator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				4C81AEA0229A242200F0DA6C /* SettingView.swift */,
 				4C81AEA2229A243700F0DA6C /* HistoryView.swift */,
 				4C81AEB2229F5A1400F0DA6C /* SurveyView.swift */,
+				4C91E84E22A3AC37006FD6DC /* SurveyViewAnimator.swift */,
 				4C81AEB9229F842E00F0DA6C /* SurveyOptionCellView.swift */,
 				4C81AEB0229F586300F0DA6C /* SurveyNavigationView.swift */,
 				4C81AEAE229E097600F0DA6C /* DataSummaryCellView.swift */,
@@ -203,6 +206,7 @@
 				4C81AEA5229A5B5100F0DA6C /* LoadableButton.swift in Sources */,
 				4C81AEB1229F586300F0DA6C /* SurveyNavigationView.swift in Sources */,
 				4C81AEB8229F6BE000F0DA6C /* SurveyViewController.swift in Sources */,
+				4C91E84F22A3AC37006FD6DC /* SurveyViewAnimator.swift in Sources */,
 				4C81AEAF229E097600F0DA6C /* DataSummaryCellView.swift in Sources */,
 				4C81AEB6229F5D1C00F0DA6C /* HomeViewController.swift in Sources */,
 			);

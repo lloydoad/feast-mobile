@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsView" customModule="F_Core_2" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="5qK-OP-k0j"/>
+                <outlet property="legalButton" destination="yq2-5T-B7p" id="7S9-0j-2tp"/>
+                <outlet property="mainStackView" destination="0Oo-Zg-lSL" id="5MU-Fz-2Zi"/>
+                <outlet property="notificationSwitch" destination="YWc-Ot-I0e" id="R8q-Rr-vT8"/>
+                <outlet property="numberOfQuestionButton" destination="Xik-RZ-16L" id="H8a-Bc-5hY"/>
+                <outlet property="numberOfQuestionConstraintHeight" destination="vJA-lj-Tjs" id="t8L-aI-b1j"/>
+                <outlet property="numberOfQuestionPicker" destination="U6d-5e-ool" id="zZm-j1-H95"/>
+                <outlet property="pickerContainerView" destination="8da-oZ-sC2" id="Cs1-EJ-cBN"/>
+                <outlet property="suggestionsButton" destination="MyO-C1-ac1" id="qxY-me-weF"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" userLabel="ContentView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="0Oo-Zg-lSL" userLabel="Main Stack View">
+                    <rect key="frame" x="23" y="80" width="329" height="564"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xik-RZ-16L" customClass="ThemeUIButton" customModule="F_Core_2" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="329" height="53"/>
+                            <color key="backgroundColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="53" id="oC9-VF-Vy6"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <inset key="contentEdgeInsets" minX="12" minY="12" maxX="12" maxY="12"/>
+                            <state key="normal" title="Number of Questions: 3"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="mainColor">
+                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="secondaryColor">
+                                    <color key="value" red="0.90980392160000001" green="0.62352941179999999" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="8da-oZ-sC2">
+                            <rect key="frame" x="0.0" y="68" width="329" height="130"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The higher the number of questions, the more accurate, our suggestions can be." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZDu-iU-13o">
+                                    <rect key="frame" x="14.5" y="0.0" width="300" height="52"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="300" id="k2X-Vq-CIZ"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U6d-5e-ool">
+                                    <rect key="frame" x="0.0" y="52" width="329" height="78"/>
+                                </pickerView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="U6d-5e-ool" firstAttribute="height" secondItem="8da-oZ-sC2" secondAttribute="height" multiplier="0.6" id="70T-VJ-Yih"/>
+                                <constraint firstItem="U6d-5e-ool" firstAttribute="width" secondItem="8da-oZ-sC2" secondAttribute="width" id="mRR-lE-SCx"/>
+                                <constraint firstAttribute="height" constant="130" id="vJA-lj-Tjs"/>
+                            </constraints>
+                        </stackView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2gT-yQ-hKz">
+                            <rect key="frame" x="0.0" y="213" width="329" height="53"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZEe-8p-jVE" customClass="ThemeUIButton" customModule="F_Core_2" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="329" height="53"/>
+                                    <color key="backgroundColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <inset key="contentEdgeInsets" minX="12" minY="12" maxX="12" maxY="12"/>
+                                    <state key="normal" title="Notifications"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="mainColor">
+                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="secondaryColor">
+                                            <color key="value" red="0.90980392160000001" green="0.62352941179999999" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="YWc-Ot-I0e">
+                                    <rect key="frame" x="266" y="11" width="49" height="31"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="47" id="htq-V7-hTk"/>
+                                    </constraints>
+                                    <color key="onTintColor" red="0.90980392160000001" green="0.62352941179999999" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="thumbTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </switch>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="53" id="Fsh-QE-eoK"/>
+                                <constraint firstAttribute="bottom" secondItem="ZEe-8p-jVE" secondAttribute="bottom" id="Fvo-5T-t0Y"/>
+                                <constraint firstAttribute="trailing" secondItem="ZEe-8p-jVE" secondAttribute="trailing" id="SUU-tS-udq"/>
+                                <constraint firstItem="YWc-Ot-I0e" firstAttribute="centerY" secondItem="2gT-yQ-hKz" secondAttribute="centerY" id="TMo-bn-d5u"/>
+                                <constraint firstAttribute="trailing" secondItem="YWc-Ot-I0e" secondAttribute="trailing" constant="16" id="gBl-RA-QSa"/>
+                                <constraint firstItem="ZEe-8p-jVE" firstAttribute="leading" secondItem="2gT-yQ-hKz" secondAttribute="leading" id="sxz-wc-kfC"/>
+                                <constraint firstItem="ZEe-8p-jVE" firstAttribute="top" secondItem="2gT-yQ-hKz" secondAttribute="top" id="wX4-R8-q3H"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MyO-C1-ac1" customClass="ThemeUIButton" customModule="F_Core_2" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="281" width="329" height="53"/>
+                            <color key="backgroundColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="53" id="L8B-5a-Ibn"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <inset key="contentEdgeInsets" minX="12" minY="12" maxX="12" maxY="12"/>
+                            <state key="normal" title="Suggestions"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="mainColor">
+                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="secondaryColor">
+                                    <color key="value" red="0.90980392160000001" green="0.62352941179999999" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yq2-5T-B7p" customClass="ThemeUIButton" customModule="F_Core_2" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="349" width="329" height="53"/>
+                            <color key="backgroundColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="53" id="7Lb-SN-9sn"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <inset key="contentEdgeInsets" minX="12" minY="12" maxX="12" maxY="12"/>
+                            <state key="normal" title="Legal"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="mainColor">
+                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="secondaryColor">
+                                    <color key="value" red="0.90980392160000001" green="0.62352941179999999" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                        <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ycV-6B-aGw">
+                            <rect key="frame" x="0.0" y="417" width="329" height="147"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="0Oo-Zg-lSL" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="18" id="8py-tz-DKj"/>
+                <constraint firstItem="0Oo-Zg-lSL" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="23" id="BIn-pb-Fi7"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="0Oo-Zg-lSL" secondAttribute="bottom" constant="70" id="Chz-g9-7dx"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="0Oo-Zg-lSL" secondAttribute="trailing" constant="23" id="qye-un-eve"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="53.600000000000001" y="48.125937031484263"/>
+        </view>
+    </objects>
+</document>

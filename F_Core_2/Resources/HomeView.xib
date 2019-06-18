@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeView" customModule="F_Core_2" customModuleProvider="target">
+            <connections>
+                <outlet property="backgroundImageView" destination="mSN-A4-VWO" id="OLU-wZ-evi"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="keh-dg-cha"/>
+                <outlet property="dealButton" destination="wRg-w8-XAX" id="Hag-MV-uMV"/>
+                <outlet property="dealDescriptionLabel" destination="MWx-Eg-Vj1" id="6Oh-zf-sxl"/>
+                <outlet property="dealHeader" destination="JkF-MW-OAq" id="YpH-Eh-q3d"/>
+                <outlet property="surveyButton" destination="dsX-4L-Fec" id="yJ6-ye-kTb"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" userLabel="Content View">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultBackground" translatesAutoresizingMaskIntoConstraints="NO" id="mSN-A4-VWO" userLabel="Background">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bU0-ps-cVK" userLabel="Gradient Layer View" customClass="GradientView" customModule="F_Core_2" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                            <color key="value" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="middleColor">
+                            <color key="value" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                            <color key="value" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="0.7468694982394366" colorSpace="custom" customColorSpace="displayP3"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="start">
+                            <real key="value" value="0.050000000000000003"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="middle">
+                            <real key="value" value="0.25"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="end">
+                            <real key="value" value="0.59999999999999998"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="1dY-pe-Rgg">
+                    <rect key="frame" x="23" y="197" width="329" height="400"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iue-Ce-ju5">
+                            <rect key="frame" x="0.0" y="0.0" width="329" height="121"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qGj-Iw-hWf">
+                            <rect key="frame" x="0.0" y="141" width="329" height="113"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KOREAN?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JkF-MW-OAq">
+                                    <rect key="frame" x="0.0" y="0.0" width="329" height="72"/>
+                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="60"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Searching for the best deals in your area. Stay tuned!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MWx-Eg-Vj1">
+                                    <rect key="frame" x="0.0" y="72" width="329" height="41"/>
+                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRg-w8-XAX" customClass="ThemeUIButton" customModule="F_Core_2" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="274" width="329" height="53"/>
+                            <color key="backgroundColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="53" id="zrr-6P-qGf"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <inset key="contentEdgeInsets" minX="12" minY="12" maxX="12" maxY="12"/>
+                            <state key="normal" title="Searching..."/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="mainColor">
+                                    <color key="value" red="0.90980392160000001" green="0.62352941179999999" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="secondaryColor">
+                                    <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsX-4L-Fec" customClass="ThemeUIButton" customModule="F_Core_2" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="347" width="329" height="53"/>
+                            <color key="backgroundColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="53" id="jTE-iW-JIX"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <inset key="contentEdgeInsets" minX="12" minY="12" maxX="12" maxY="12"/>
+                            <state key="normal" title="Find other restaurants"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="mainColor">
+                                    <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="secondaryColor">
+                                    <color key="value" red="0.90980392160000001" green="0.62352941179999999" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="400" id="aDU-vu-J65"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="mSN-A4-VWO" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="2Ti-Il-tt0"/>
+                <constraint firstItem="1dY-pe-Rgg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="23" id="7tw-Cw-b8c"/>
+                <constraint firstItem="mSN-A4-VWO" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="ERS-1X-HNd"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="1dY-pe-Rgg" secondAttribute="bottom" constant="70" id="JWZ-dt-Cgp"/>
+                <constraint firstAttribute="bottom" secondItem="mSN-A4-VWO" secondAttribute="bottom" id="YKn-Ht-il4"/>
+                <constraint firstAttribute="trailing" secondItem="bU0-ps-cVK" secondAttribute="trailing" id="Zog-WQ-uNc"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="1dY-pe-Rgg" secondAttribute="trailing" constant="23" id="hov-1i-FXW"/>
+                <constraint firstItem="bU0-ps-cVK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="lp4-2F-joC"/>
+                <constraint firstItem="bU0-ps-cVK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qoS-oV-o1c"/>
+                <constraint firstAttribute="bottom" secondItem="bU0-ps-cVK" secondAttribute="bottom" id="x6E-wo-wvA"/>
+                <constraint firstItem="mSN-A4-VWO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="xvt-v8-oeP"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="138.40000000000001" y="152.47376311844079"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="defaultBackground" width="3407" height="4259"/>
+    </resources>
+</document>

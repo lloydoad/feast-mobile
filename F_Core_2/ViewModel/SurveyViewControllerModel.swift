@@ -69,10 +69,10 @@ class SurveyViewControllerModel {
     func getSurveyTableContent() {
         if shouldFetchRestaurants {
             restaurants = [
-                Restaurant(),
-                Restaurant(),
-                Restaurant(),
-                Restaurant()
+                placeholderRestaurant,
+                placeholderRestaurant,
+                placeholderRestaurant,
+                placeholderRestaurant
             ]
             
             delegate?.didGetReviews(fromSelection: getStringRepresentationOfPreviousClassifiers())

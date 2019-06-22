@@ -16,7 +16,7 @@ struct HomeViewControllerModel {
     private var surveyQuestionLimit: Int = 3
     
     public mutating func setSurveyLimit(_ value: Int) {
-        if value > 3 && value < 6 {
+        if value >= 3 && value < 6 {
             surveyQuestionLimit = value
         }
     }

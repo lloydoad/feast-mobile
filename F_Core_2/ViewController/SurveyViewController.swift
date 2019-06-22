@@ -113,6 +113,7 @@ class SurveyViewController: UIViewController, UITableViewDataSource, UITableView
         
         if surveyViewControllerModel?.shouldFetchRestaurants ?? false {
             if let restaurantCollectionViewController = storyboard.instantiateViewController(withIdentifier: RestaurantCollectionViewController.identifier) as? RestaurantCollectionViewController {
+                restaurantCollectionViewController.restaurantCollectionViewModel = RestaurantCollectionViewControllerModel(restaurants: surveyViewControllerModel?.restaurants ?? [])
                 navigationController?.pushViewController(restaurantCollectionViewController, animated: true)
             }
             return

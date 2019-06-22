@@ -35,6 +35,22 @@ class RestaurantCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var mainContentView: UIView!
     @IBOutlet weak var mainBackgroundView: UIView!
     
+    var model: RestaurantCollectionViewCellModel? {
+        didSet {
+            guard let model = model else { return }
+            restaurantTitleLabel.text = model.restaurantTitle
+            isOpenIndicatorView.backgroundColor = model.restaurantIsOpenColor
+            isOpenIndicatorLabel.text = model.restaurantIsOpenString
+            priceLabel.text = model.restaurantPrice
+            tagsLabel.text = model.tagString
+            ratingImageView.image = UIImage(named: model.ratingImageName)
+            reviewCountLabel.text = model.reviewCountString
+            locationLabel.text = model.locationString
+            ratingLabel.text = model.overallRating
+            reviewLabel.text = model.reviews.first?.ratingString
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setupBorders()

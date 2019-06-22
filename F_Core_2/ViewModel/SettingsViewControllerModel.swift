@@ -46,7 +46,7 @@ struct SettingsViewControllerModel {
     
     mutating func setSelectedQuestionOption(_ index: Int) {
         self.selectedQuestionOptionIndex = index
-        Defaults.save(selectedQuestionOptionIndex)
+        Defaults.save(getValueFor(row: index))
     }
     
     func getSelectedOptionIndex() -> Int? {

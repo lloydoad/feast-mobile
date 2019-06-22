@@ -9,7 +9,6 @@
 import Foundation
 
 struct Defaults {
-    
     static let numberOfQuestionSettingsKey = "numberOfQuestionSettings"
     static let userSessionKey = "com.save.usersession"
     

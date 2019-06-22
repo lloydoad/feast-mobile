@@ -20,7 +20,7 @@ class ClassifierTableViewCell: UITableViewCell {
     
     var restaurantModel: Restaurant? {
         didSet {
-            contentButton.setTitle(restaurantModel?.review, for: .normal)
+            contentButton.setTitle(restaurantModel?.reviews.first?.text, for: .normal)
         }
     }
     

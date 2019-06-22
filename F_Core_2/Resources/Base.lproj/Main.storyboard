@@ -288,10 +288,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SeM-Zf-uHh">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" prefetchingEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SeM-Zf-uHh">
                                 <rect key="frame" x="23" y="40" width="329" height="587"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gkS-lQ-d0e">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="gkS-lQ-d0e">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -299,13 +299,21 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="prZ-At-OSr" userLabel="CellSelectionView" customClass="CellSelectionView" customModule="F_Core_2" customModuleProvider="target">
+                                <rect key="frame" x="23" y="644" width="329" height="6"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="SeM-Zf-uHh" firstAttribute="top" secondItem="a0d-5X-ezY" secondAttribute="top" constant="20" id="5fN-0H-7rP"/>
+                            <constraint firstItem="a0d-5X-ezY" firstAttribute="trailing" secondItem="prZ-At-OSr" secondAttribute="trailing" constant="23" id="CfB-MV-QV2"/>
+                            <constraint firstItem="prZ-At-OSr" firstAttribute="leading" secondItem="a0d-5X-ezY" secondAttribute="leading" constant="23" id="Gnj-bX-H6c"/>
+                            <constraint firstItem="prZ-At-OSr" firstAttribute="top" secondItem="SeM-Zf-uHh" secondAttribute="bottom" constant="17" id="YIG-zz-Oam"/>
                             <constraint firstItem="SeM-Zf-uHh" firstAttribute="leading" secondItem="a0d-5X-ezY" secondAttribute="leading" constant="23" id="ZSo-zh-EIL"/>
                             <constraint firstItem="a0d-5X-ezY" firstAttribute="trailing" secondItem="SeM-Zf-uHh" secondAttribute="trailing" constant="23" id="a0F-oa-iDQ"/>
                             <constraint firstItem="a0d-5X-ezY" firstAttribute="bottom" secondItem="SeM-Zf-uHh" secondAttribute="bottom" constant="40" id="dwk-PS-tfU"/>
+                            <constraint firstItem="a0d-5X-ezY" firstAttribute="bottom" secondItem="prZ-At-OSr" secondAttribute="bottom" constant="17" id="lLo-IP-hFS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="a0d-5X-ezY"/>
                     </view>
@@ -318,6 +326,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="barForSelectedCellView" destination="prZ-At-OSr" id="IIX-zL-PN4"/>
                         <outlet property="homeButton" destination="4If-C1-rIB" id="52L-qi-OSr"/>
                         <outlet property="restaurantCollectionView" destination="SeM-Zf-uHh" id="YWZ-tE-xSx"/>
                     </connections>

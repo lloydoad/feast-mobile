@@ -22,6 +22,9 @@ class F_Core_2Tests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        RequestSingleton.fetchClassifiers(BaseURL.setup, previous: []) { (classifiers) in
+            print(classifiers)
+        }
     }
 
     func testPerformanceExample() {

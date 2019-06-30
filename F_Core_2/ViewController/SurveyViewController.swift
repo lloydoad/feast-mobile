@@ -30,7 +30,7 @@ class SurveyViewController: UIViewController, UITableViewDataSource, UITableView
         super.viewDidLoad()
         self.setupTable()
         self.setupPreviousClassifierButton()
-        self.surveyViewControllerModel?.getSurveyTableContent()
+        self.surveyViewControllerModel?.getSurveyTableContent(shouldFetchInitialClassifiers: previousClassifiers.isEmpty)
         self.navigationItem.titleView = homeButton
     }
     
@@ -88,6 +88,7 @@ class SurveyViewController: UIViewController, UITableViewDataSource, UITableView
         if self.previousClassifierButton != nil {
             self.previousClassifierButton.setTitle(fromSelection, for: .normal)
         }
+        
         self.classifierTableView.reloadData()
     }
     

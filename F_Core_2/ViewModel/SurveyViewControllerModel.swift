@@ -41,6 +41,8 @@ class SurveyViewControllerModel {
         }
     }
     
+    private var classifierCache: [[Classifier]] = []
+    
     var delegate: SurveyViewControllerModelDelegate?
     
     init(selectedClassifiers: [Classifier], delegate: SurveyViewControllerModelDelegate?, isReviewSurvey: Bool) {
@@ -66,7 +68,7 @@ class SurveyViewControllerModel {
         return stringRepresentation
     }
     
-    func getSurveyTableContent() {
+    func getSurveyTableContent(shouldFetchInitialClassifiers: Bool = false) {
         if shouldFetchRestaurants {
             restaurants = [
                 placeholderRestaurant,
@@ -77,15 +79,24 @@ class SurveyViewControllerModel {
             
             delegate?.didGetReviews(fromSelection: getStringRepresentationOfPreviousClassifiers())
         } else {
-            classifiers = [
-                Classifier(name: "One"),
-                Classifier(name: "Two"),
-                Classifier(name: "Three"),
-                Classifier(name: "Four"),
-                Classifier(name: "Five"),
-                Classifier(name: "Six")
-            ]
-            delegate?.didGetClassifiers(fromSelection: getStringRepresentationOfPreviousClassifiers())
+            let url = shouldFetchInitialClassifiers ? BaseURL.setup : BaseURL.addon
+            let isNested = shouldFetchInitialClassifiers ? true : false
+            
+            if self.classifierCache.isEmpty {
+                RequestSingleton.fetchClassifiers(url, previous: self.selectedClassifiers, isNested: isNested) { (classifiers) in
+                    if isNested, let classifiers = classifiers as? [[Classifier]] {
+                        self.classifierCache = classifiers
+                        self.classifiers = self.classifierCache.removeFirst()
+                        self.delegate?.didGetClassifiers(fromSelection: self.getStringRepresentationOfPreviousClassifiers())
+                    } else if let classifiers = classifiers as? [Classifier] {
+                        self.classifiers = classifiers
+                        self.delegate?.didGetClassifiers(fromSelection: self.getStringRepresentationOfPreviousClassifiers())
+                    }
+                }
+            } else {
+                classifiers = classifierCache.removeFirst()
+                delegate?.didGetClassifiers(fromSelection: getStringRepresentationOfPreviousClassifiers())
+            }
         }
     }
 }

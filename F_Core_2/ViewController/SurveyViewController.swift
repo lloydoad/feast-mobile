@@ -142,6 +142,6 @@ class SurveyViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     @IBAction func refreshButtonTapped(_ sender: Any) {
-        surveyViewControllerModel?.getSurveyTableContent()
+        surveyViewControllerModel?.getSurveyTableContent(shouldFetchInitialClassifiers: self.previousClassifiers.isEmpty)
     }
 }

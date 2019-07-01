@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreLocation
 
-class RootViewController: UIViewController, UIScrollViewDelegate {
+class RootViewController: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegate {
     @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var navigationViewBarCenterConstraint: NSLayoutConstraint!
     @IBOutlet weak var historyView: HistoryView!
@@ -19,6 +20,10 @@ class RootViewController: UIViewController, UIScrollViewDelegate {
     var homeViewControllerModel: HomeViewControllerModel?
     var historyViewControllerModel: HistoryViewControllerModel?
     var settingsViewControllerModel: SettingsViewControllerModel?
+    
+    var locationManager: CLLocationManager?
+    var lastLocationUpdateTime: Date?
+    var location: [Geolocation:Double]?
         
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -31,6 +36,7 @@ class RootViewController: UIViewController, UIScrollViewDelegate {
         self.loadHomeView()
         self.loadHistoryView()
         self.loadSettingsView()
+        self.fetchLocationData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,6 +45,23 @@ class RootViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         self.mainScrollView.setContentOffset(CGPoint(x: view.frame.width, y: 0), animated: false)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let locationValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        self.location?[Geolocation.Latitude] = locationValue.latitude
+        self.location?[Geolocation.Longitude] = locationValue.longitude
+        self.lastLocationUpdateTime = Date()
+    }
+    
+    private func fetchLocationData() {
+        locationManager = CLLocationManager()
+        locationManager?.requestWhenInUseAuthorization()
+        locationManager?.showsBackgroundLocationIndicator = true
+        locationManager?.delegate = self
+        locationManager?.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager?.startUpdatingLocation()
+        print("getting location")
     }
     
     private func loadHomeView() {
